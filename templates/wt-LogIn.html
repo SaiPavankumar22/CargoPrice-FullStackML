@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log In Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <div class="main">
+        <div class="box">
+            <h1 class="head">Log In</h1>
+            <form id="login-form">
+                <div class="set">
+                    <label for="email" class="label">Email</label>
+                    <input type="email" class="input" id="email" name="email" required/>
+                </div>
+                <div class="set">
+                    <label for="password" class="label">Password</label>
+                    <input type="password" class="input" id="password" name="password" required/>
+                </div>
+                <div class="set1">
+                    <button type="submit" class="button">Submit</button>
+                </div>
+            </form>
+            <p class="para">Don't have an account? <a href="wt-SignUp.html">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            
+            fetch('http://localhost:5001/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                if (data === 'Login successful') {
+                    window.location.href = "wt-form.html"; 
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

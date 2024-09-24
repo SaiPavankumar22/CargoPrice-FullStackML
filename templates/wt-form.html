@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Prediction Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>PRICE PREDICTION MODEL</h1>
+        <form id="predictionForm">
+            <!-- Source Dropdown -->
+            <div class="form-group">
+                <label for="source">Source Location:</label>
+                <select id="source" name="source">
+                    <option value="Vijayawada">Vijayawada</option>
+                    <option value="Guntur">Guntur</option>
+                    <option value="Visakhapatnam">Visakhapatnam</option>
+                    <option value="Rajahmundry">Rajahmundry</option>
+                    <option value="Tirupati">Tirupati</option>
+                    <option value="Kurnool">Kurnool</option>
+                    <option value="Nellore">Nellore</option>
+                    <option value="Kadapa">Kadapa</option>
+                </select>
+            </div>
+
+            <!-- Destination Dropdown -->
+            <div class="form-group">
+                <label for="destination">Destination Location:</label>
+                <select id="destination" name="destination">
+                    <option value="Guntur">Guntur</option>
+                    <option value="Visakhapatnam">Visakhapatnam</option>
+                    <option value="Rajahmundry">Rajahmundry</option>
+                    <option value="Vijayawada">Vijayawada</option>
+                </select>
+            </div>
+
+            <!-- Cargo Type Dropdown -->
+            <div class="form-group">
+                <label for="cargo">Cargo Type:</label>
+                <select id="cargo" name="cargo">
+                    <option value="clothing">Clothing</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="perishable">Perishable Goods</option>
+                    <option value="food">Food</option>
+                    <option value="machinery">Machinery</option>
+                    <option value="chemicals">Chemicals</option>
+                    <option value="books">Books</option>
+                    <option value="glassware">Glassware</option>
+                </select>
+            </div>
+
+            <!-- Urgency Dropdown -->
+            <div class="form-group">
+                <label for="urgency">Urgency:</label>
+                <select id="urgency" name="urgency">
+                    <option value="normal">Normal</option>
+                    <option value="urgent">Urgent</option>
+                </select>
+            </div>
+
+            <!-- Fragile Dropdown -->
+            <div class="form-group">
+                <label for="fragile">Fragile:</label>
+                <select id="fragile" name="fragile">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+
+            <!-- Weight Input -->
+            <div class="form-group">
+                <label for="weight">Weight:</label>
+                <input type="number" id="weight" name="weight" placeholder="Enter weight (kgs)" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Display Predicted Price -->
+        <div style="margin-top: 20px; font-size: 1.5em; font-weight: bold; color: #f40d0d;">
+            <label style="margin-right: 10px;">Predicted Price:</label>
+            <span id="predictedPrice" style="padding: 5px; border: 2px solid #1216f1; border-radius: 5px; background-color: #f9f9f9;"></span>
+        </div>
+        
+    </div>
+
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+
+</body>
+</html>

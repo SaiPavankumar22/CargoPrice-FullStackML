@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+</head>
+<body>
+    <div class="main">
+        <div class="box">
+            <h1 class="head">Sign Up</h1>
+            <form id="signup-form">
+                <div class="set">
+                    <label for="username" class="label">Username</label>
+                    <input type="text" class="input" id="username" required />
+                </div>
+                <div class="set">
+                    <label for="email" class="label">Email</label>
+                    <input type="email" class="input" id="email" required />
+                </div>
+                <div class="set">
+                    <label for="password" class="label">Password</label>
+                    <input type="password" class="input" id="password" required />
+                </div>
+                <div class="set">
+                    <label for="confirmpassword" class="label">Confirm Password</label>
+                    <input type="password" class="input" id="confirmpassword" required />
+                </div>
+                <div class="set1">
+                    <button type="submit" class="button">Submit</button>
+                </div>
+            </form>
+            <p class="para">Already Have an account? <a href="wt-LogIn.html">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmpassword').value;
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            fetch('http://localhost:5001/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, email, password })
+            })
+            .then(response => response.text()) 
+            .then(data => {
+                alert(data);
+                if (data === 'Signup successful') {
+                    window.location.href = 'wt-LogIn.html';}
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
